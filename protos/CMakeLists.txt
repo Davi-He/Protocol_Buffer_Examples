@@ -20,9 +20,12 @@ foreach(proto ${PROTO_FILES})
     # Get filename without extension
     get_filename_component(PROTO_NAME_WE ${proto} NAME_WE)
     get_filename_component(PROTO_NAME ${proto} NAME)
-    # message(STATUS "Generating Protobuf Code for ${PROTO_NAME}")
+    message(STATUS "Generating Protobuf Code for ${PROTO_NAME} : ${proto}")
     protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ${proto})
     add_library(${PROTO_NAME_WE} STATIC ${PROTO_SRCS} ${PROTO_HDRS})
     target_include_directories(${PROTO_NAME_WE} PUBLIC ${Protobuf_INCLUDE_DIRS})
+
+    protobuf_generate_python(PROTO_PY ${proto})
+    add_custom_target(myTarget ALL DEPENDS ${PROTO_PY})
 endforeach()
 
