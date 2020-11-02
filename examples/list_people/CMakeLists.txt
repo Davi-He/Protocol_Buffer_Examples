@@ -1,5 +1,5 @@
 # Minimum CMake required
-cmake_minimum_required(VERSION 3.14.4)
+cmake_minimum_required(VERSION 3.10)
 
 # Project
 project(list_people)
